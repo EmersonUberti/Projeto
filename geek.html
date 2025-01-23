@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FrofoGeek</title> 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000; /* Fundo preto */
+      color: #fff; /* Texto branco */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: #001f3f; /* Azul escuro */
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 24px;
+    }
+
+    .container {
+      display: flex;
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    .products, .add-product {
+      background-color: #001f3f; /* Azul escuro */
+      padding: 20px;
+      border-radius: 10px;
+      margin: 10px;
+    }
+
+    .products {
+      flex: 2;
+      margin-right: 10px;
+    }
+
+    .products h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .product {
+      background-color: #00274d; /* Azul mais claro */
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 5px;
+      cursor: pointer; /* Aparece como cursor de mão quando o usuário passa por cima */
+    }
+
+    .product h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .product p {
+      font-size: 14px;
+      color: #ccc; /* Cinza claro */
+    }
+
+    .add-product {
+      flex: 1;
+    }
+
+    .add-product h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .add-product form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .add-product input {
+      margin-bottom: 10px;
+      padding: 8px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .add-product button {
+      padding: 10px;
+      background-color: #008cba; /* Azul mais claro */
+      color: #fff;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .add-product button:hover {
+      background-color: #0073a6; /* Azul ainda mais claro */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span>💙💙💙 FrofoGeek</span>
+  </header>
+  <div class="container">
+    <div class="products">
+      <h2>MEUS PRODUTOS:</h2>
+      <div class="product-grid" id="product-grid">
+        <!-- Produtos serão adicionados dinamicamente aqui -->
+        <div class="product" data-name="Mini Funko Frodo" data-price="15,00" data-image="images/funko_frodo.jpg">
+          <img src="images/funko_frodo.jpg" alt="Mini Funko Frodo">
+          <h3>Mini Funko Frodo</h3>
+          <p>$15,00</p>
+        </div>
+        <div class="product" data-name="Mini Funko Gandalf" data-price="20,00" data-image="images/funko_gandalf.jpg">
+          <img src="images/funko_gandalf.jpg" alt="Mini Funko Gandalf">
+          <h3>Mini Funko Gandalf</h3>
+          <p>$20,00</p>
+        </div>
+        <div class="product" data-name="Mini Funko Legolas" data-price="18,00" data-image="images/funko_legolas.jpg">
+          <img src="images/funko_legolas.jpg" alt="Mini Funko Legolas">
+          <h3>Mini Funko Legolas</h3>
+          <p>$18,00</p>
+        </div>
+        <div class="product" data-name="Mini Funko Aragorn" data-price="22,00" data-image="images/funko_aragorn.jpg">
+          <img src="images/funko_aragorn.jpg" alt="Mini Funko Aragorn">
+          <h3>Mini Funko Aragorn</h3>
+          <p>$22,00</p>
+        </div>
+      </div>
+    </div>
+    <div class="add-product">
+      <h2>ADICIONAR PRODUTO:</h2>
+      <form id="product-form">
+        <input type="text" id="product-name" placeholder="Nome..." required>
+        <input type="text" id="product-price" placeholder="Valor..." required>
+        <input type="text" id="product-image" placeholder="Imagem..." required>
+        <button type="submit">Guardar</button>
+        <button type="reset">Limpar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Seleciona todos os produtos
+    const products = document.querySelectorAll('.product');
+    
+    // Adiciona evento de clique para cada imagem de produto
+    products.forEach(product => {
+      const image = product.querySelector('img');
+      
+      image.addEventListener('click', () => {
+        const name = product.dataset.name;
+        const price = product.dataset.price;
+        const imageSrc = product.dataset.image;
+        
+        // Preenche os campos do formulário com os dados do produto clicado
+        document.getElementById('product-name').value = name;
+        document.getElementById('product-price').value = price;
+        document.getElementById('product-image').value = imageSrc;
+      });
+    });
+  </script>
+</body>
+</html>
